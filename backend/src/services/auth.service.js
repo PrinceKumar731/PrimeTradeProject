@@ -7,6 +7,12 @@ import { ApiError } from '../utils/ApiError.js';
 
 const SALT_ROUNDS = 12;
 
+const sanitizeUser = (user) => {
+  const userObject = user.toObject();
+  delete userObject.password;
+  return userObject;
+};
+
 const buildAuthResponse = (user) => {
   const token = jwt.sign(
     {
@@ -46,7 +52,7 @@ export const registerUser = async ({ name, email, password }) => {
     role: 'user',
   });
 
-  return buildAuthResponse(user.toJSON());
+  return buildAuthResponse(sanitizeUser(user));
 };
 
 export const loginUser = async ({ email, password }) => {
@@ -68,5 +74,5 @@ export const loginUser = async ({ email, password }) => {
     throw new ApiError(401, 'Invalid email or password');
   }
 
-  return buildAuthResponse(user.toJSON());
+  return buildAuthResponse(sanitizeUser(user));
 };
