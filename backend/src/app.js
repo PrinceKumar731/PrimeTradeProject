@@ -8,6 +8,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { notFound } from './middleware/notFound.js';
 import { authRouter } from './routes/auth.routes.js';
 import { healthRouter } from './routes/health.routes.js';
+import { taskRouter } from './routes/task.routes.js';
 import { userRouter } from './routes/user.routes.js';
 
 const app = express();
@@ -29,6 +30,7 @@ if (env.nodeEnv !== 'test') {
 app.use(`/api/${env.apiVersion}/health`, healthRouter);
 app.use(`/api/${env.apiVersion}/auth`, authRouter);
 app.use(`/api/${env.apiVersion}/users`, userRouter);
+app.use(`/api/${env.apiVersion}/tasks`, taskRouter);
 
 app.use(notFound);
 app.use(errorHandler);
