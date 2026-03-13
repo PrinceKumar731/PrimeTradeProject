@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 import { env } from './config/env.js';
+import { swaggerServe, swaggerSetup } from './docs/swagger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFound } from './middleware/notFound.js';
 import { authRouter } from './routes/auth.routes.js';
@@ -27,6 +28,7 @@ if (env.nodeEnv !== 'test') {
   app.use(morgan('dev'));
 }
 
+app.use('/api-docs', swaggerServe, swaggerSetup);
 app.use(`/api/${env.apiVersion}/health`, healthRouter);
 app.use(`/api/${env.apiVersion}/auth`, authRouter);
 app.use(`/api/${env.apiVersion}/users`, userRouter);
