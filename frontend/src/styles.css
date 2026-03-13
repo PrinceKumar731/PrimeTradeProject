@@ -111,7 +111,8 @@ select {
 
 .hero-grid,
 .dashboard-grid,
-.auth-layout {
+.auth-layout,
+.dashboard-layout {
   display: grid;
   gap: 20px;
 }
@@ -124,6 +125,16 @@ select {
 .auth-layout {
   grid-template-columns: 1.2fr 0.8fr;
   align-items: start;
+}
+
+.dashboard-layout {
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+}
+
+.dashboard-main {
+  display: grid;
+  gap: 20px;
 }
 
 .hero-copy,
@@ -268,7 +279,22 @@ select {
   background: #ffffff;
 }
 
+.field textarea,
+.field select {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 32, 42, 0.12);
+  background: #ffffff;
+  resize: vertical;
+}
+
 .field input:focus {
+  outline: 2px solid rgba(96, 121, 88, 0.25);
+  border-color: #607958;
+}
+
+.field textarea:focus,
+.field select:focus {
   outline: 2px solid rgba(96, 121, 88, 0.25);
   border-color: #607958;
 }
@@ -309,6 +335,83 @@ select {
   border: 1px solid rgba(24, 32, 42, 0.08);
 }
 
+.task-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.task-sidebar {
+  display: grid;
+  gap: 18px;
+}
+
+.task-list {
+  display: grid;
+  gap: 14px;
+}
+
+.task-card {
+  padding: 18px;
+  border-radius: 18px;
+  background: #f3f5ef;
+}
+
+.task-card__header,
+.task-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.task-card__header {
+  align-items: flex-start;
+}
+
+.task-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.task-card__description {
+  margin: 14px 0 16px;
+}
+
+.task-card__footer {
+  justify-content: flex-start;
+}
+
+.task-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  background: #ffffff;
+}
+
+.task-badge--pending {
+  color: #765b18;
+  background: #f5ead1;
+}
+
+.task-badge--in-progress {
+  color: #0f5971;
+  background: #dceef4;
+}
+
+.task-badge--completed {
+  color: #335528;
+  background: #dff0d6;
+}
+
 @media (max-width: 820px) {
   .app-shell {
     width: min(100% - 20px, 1120px);
@@ -317,7 +420,8 @@ select {
 
   .topbar,
   .hero-grid,
-  .auth-layout {
+  .auth-layout,
+  .dashboard-layout {
     grid-template-columns: 1fr;
     flex-direction: column;
     align-items: flex-start;
