@@ -1,24 +1,24 @@
 import { StatusCard } from '../components/StatusCard.jsx';
 
-export function DashboardPage() {
+export function DashboardPage({ currentUser }) {
   return (
     <section className="panel">
       <div className="panel__header">
-        <p className="eyebrow">Step 11 Preview</p>
-        <h2>Dashboard shell for protected task management.</h2>
+        <p className="eyebrow">Protected Dashboard</p>
+        <h2>Authenticated users can now reach this route.</h2>
       </div>
 
       <div className="dashboard-grid">
-        <StatusCard label="Auth State" value="Pending UI" />
+        <StatusCard label="Auth State" value="Active" tone="accent" />
         <StatusCard label="Task CRUD" value="Backend Ready" tone="accent" />
-        <StatusCard label="Filters" value="Planned" />
+        <StatusCard label="Signed In As" value={currentUser?.role || 'user'} />
       </div>
 
       <div className="placeholder-block">
         <p className="muted-text">
-          This page will become the protected task dashboard. The service layer
-          is ready, but the forms and task list UI are intentionally deferred to
-          the next step.
+          {currentUser?.name
+            ? `${currentUser.name} is authenticated. In the next step this page will be upgraded into the full task CRUD workspace.`
+            : 'This page will become the full task workspace in the next step.'}
         </p>
       </div>
     </section>
